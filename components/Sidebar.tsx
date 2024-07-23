@@ -6,6 +6,7 @@ import logo from "../public/genius.svg";
 import { Montserrat } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { routes } from "@/constants";
+import { usePathname } from "next/navigation";
 
 const montserrat = Montserrat({
   weight: "600",
@@ -14,6 +15,7 @@ const montserrat = Montserrat({
 
 export default function Sidebar() {
   // console.log(logo);
+  const pathname = usePathname();
   return (
     <div className="space-y-4 py-4 flex flex-col h-full bg-[#111827] text-white">
       <div className="px-3 py-2 flex-1">
@@ -39,17 +41,18 @@ export default function Sidebar() {
         </Link>
         <div className="flex flex-col space-y-1">
           {routes.map((route) => {
-            console.log(route.color);
             return (
               <Link
-                className="text-sm group flex p-3 w-full justify-start font-medium cursor-pointer hover:text-white hover:bg-white/10 rounded-lg transition"
+                className={cn(
+                  "text-sm group flex p-3 w-full justify-start font-medium cursor-pointer hover:text-white hover:bg-white/10 rounded-lg transition",
+                  pathname === route.href ? "bg-white/10" : ""
+                )}
                 href={route.href}
                 key={route.href}
               >
                 <div className="flex items-center flex-1 ">
                   <route.icon
                     color={route.color}
-                    // color="skyblue"
                     className={cn(`h-5 w-5 mr-3`)}
                   />
                   {route.label}
