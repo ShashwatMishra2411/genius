@@ -1,20 +1,35 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import { UserButton } from "@clerk/nextjs";
 import { Montserrat } from "next/font/google";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 const montserrat = Montserrat({
   weight: "700",
   subsets: ["latin"],
 });
 import Image from "next/image";
+import Sidebar from "./Sidebar";
 export default function Navbar() {
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+  if (!isMounted) return null;
   return (
     <div className="flex items-center p-4">
-      <Link href="/dashboard" className="flex items-center pl-3">
+      <Link href="/dashboard" className="flex md:hidden items-center pl-3">
         <div className="relatve w-16 h-16 mr-4">
           <Image
             priority
@@ -32,9 +47,19 @@ export default function Navbar() {
         </p>
       </Link>
       <div className="flex w-full items-center justify-end">
-        <Button variant="ghost" size="icon" className="md:hidden">
-          <Menu />
-        </Button>
+        <Sheet>
+          <SheetTrigger>
+            <Menu className="md:hidden" />
+          </SheetTrigger>
+          <SheetContent>
+            <SheetHeader>
+              <SheetTitle>Are you absolutely sure?</SheetTitle>
+              <SheetDescription>
+                <Sidebar />
+              </SheetDescription>
+            </SheetHeader>
+          </SheetContent>
+        </Sheet>
         <UserButton />
       </div>
     </div>
