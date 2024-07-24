@@ -128,3 +128,5 @@ export const resolutionOptions = [
     label: "1024x1024",
   },
 ];
+
+export const apilimit = 5;
