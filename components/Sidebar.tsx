@@ -7,14 +7,19 @@ import { Montserrat } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { routes } from "@/constants";
 import { usePathname } from "next/navigation";
+import { Progress } from "./ui/progress";
+import { getCount } from "@/lib/api-limit";
+import { Button } from "./ui/button";
+import { Zap } from "lucide-react";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 const montserrat = Montserrat({
   weight: "600",
   subsets: ["latin"],
 });
 
-export default function Sidebar() {
-  // console.log(logo);
+export default function Sidebar({ progress }: { progress: number }) {
+  const proModal = useProModal();
   const pathname = usePathname();
   return (
     <div className="space-y-4 py-4 flex flex-col h-full bg-[#111827] text-white">
@@ -60,6 +65,17 @@ export default function Sidebar() {
               </Link>
             );
           })}
+          <div className="flex flex-col space-y-4 items-center">
+            <div>{5 - progress}/5 free tries remaining</div>
+            <Progress value={(progress / 5) * 100} />
+            <Button
+              onClick={proModal.onOpen}
+              className="w-full font-extrabold text-base bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
+            >
+              Upgrade
+              <Zap className="fill-white" />
+            </Button>
+          </div>
         </div>
       </div>
     </div>
