@@ -21,7 +21,7 @@ const montserrat = Montserrat({
 });
 import Image from "next/image";
 import Sidebar from "./Sidebar";
-export default function Navbar() {
+export default function Navbar({ progress }: { progress: number }) {
   const [isMounted, setIsMounted] = useState(false);
   useEffect(() => {
     setIsMounted(true);
@@ -48,16 +48,15 @@ export default function Navbar() {
       </Link>
       <div className="flex w-full items-center justify-end">
         <Sheet>
-          <SheetTrigger>
+          <SheetTrigger className="fill-white">
             <Menu className="md:hidden" />
           </SheetTrigger>
-          <SheetContent>
-            <SheetHeader>
-              <SheetTitle>Are you absolutely sure?</SheetTitle>
-              <SheetDescription>
-                <Sidebar />
-              </SheetDescription>
+          <SheetContent className="p-0 border-0">
+            <SheetHeader className="hidden">
+              <SheetTitle>Menu</SheetTitle>
+              <SheetDescription>Choose an option</SheetDescription>
             </SheetHeader>
+            <Sidebar progress={progress} />
           </SheetContent>
         </Sheet>
         <UserButton />
