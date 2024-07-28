@@ -21,3 +21,12 @@ model UserApiLimit {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model User {
+  id         String   @id @default(cuid())
+  email      String   @unique
+  password   String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  subscribed Boolean  @default(false)
+}
