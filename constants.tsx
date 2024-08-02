@@ -1,5 +1,6 @@
 import {
   Code,
+  Play,
   ImageIcon,
   LayoutDashboard,
   MessageSquare,
@@ -46,6 +47,13 @@ export const routes = [
     color: "#006400", // new green
   },
   {
+    label: "Youtube",
+    icon: Play,
+    href: "/youtube",
+    color: "#FF0000", // YouTube red
+    // bgcolor: "#FF00001A", // YouTube red with 10% opacity
+  },
+  {
     label: "Settings",
     icon: Settings,
     href: "/settings",
@@ -88,6 +96,13 @@ export const tools = [
     href: "/code",
     color: "#006400", // dark green
     bgcolor: "#0064001A", // dark green with 10% opacity
+  },
+  {
+    label: "Youtube",
+    icon: Play,
+    href: "/youtube",
+    color: "#FF0000", // YouTube red
+    bgcolor: "#FF00001A", // YouTube red with 10% opacity
   },
 ];
 
