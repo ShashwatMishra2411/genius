@@ -27,8 +27,8 @@ export default function Navbar({ progress }: { progress: number }) {
   }, []);
   if (!isMounted) return null;
   return (
-    <div className="flex items-center p-4">
-      <Link href="/dashboard" className="flex md:hidden items-center pl-3">
+    <div className="flex items-center p-4 basis-1/12">
+      <Link href="/dashboard" className="flex lg:hidden items-center pl-3">
         <div className="relatve w-16 h-16 mr-4">
           <Image
             priority
@@ -48,7 +48,7 @@ export default function Navbar({ progress }: { progress: number }) {
       <div className="flex w-full items-center justify-end">
         <Sheet>
           <SheetTrigger className="fill-white">
-            <Menu className="md:hidden" />
+            <Menu className="lg:hidden" />
           </SheetTrigger>
           <SheetContent className="p-0 border-0">
             <SheetHeader className="hidden">
