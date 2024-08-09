@@ -5,6 +5,10 @@ export const formSchema = z.object({
     message: "Prompt is required",
   }),
 });
+export type Chat = {
+  role: string;
+  parts: [{ text: string }];
+};
 
 export type ChatCompletionMessageParam = {
   role: string;
